@@ -6,8 +6,9 @@
     tools:context=".fragments.NumPadFragment">
 
     <data>
-        <variable name="test"
-            type="com.project.unitconverter.data.Test"/>
+        <variable
+            name="data"
+            type="com.project.unitconverter.data.Test" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -139,6 +140,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@android:color/transparent"
+            android:onClick='@{() -> data.clickerListener("/")}'
             android:elevation="0dp"
             android:src="@drawable/ic_divide"
             app:layout_constraintBottom_toTopOf="@+id/cardView7"

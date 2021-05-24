@@ -2,7 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <!-- <data> tag represents the binding data -->
+    <!-- <variable> tag represents the object of the Binding class under data package which will be used to access values of the Binding class -->
     <data>
 
         <variable
@@ -12,8 +13,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/bg_color"
         android:layout_height="match_parent"
+        android:background="@color/bg_color"
         android:orientation="vertical"
         tools:context=".main_activity.MainActivity">
 

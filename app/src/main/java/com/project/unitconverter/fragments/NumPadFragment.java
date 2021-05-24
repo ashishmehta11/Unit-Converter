@@ -12,6 +12,10 @@ import com.project.unitconverter.R;
 import com.project.unitconverter.data.Test;
 import com.project.unitconverter.databinding.FragmentNumPadBinding;
 
+/**
+ * A fragment representing the number pad view of the screen
+ */
+
 public class NumPadFragment extends Fragment {
     private FragmentNumPadBinding binding = null;
 
@@ -22,8 +26,9 @@ public class NumPadFragment extends Fragment {
         if (binding == null) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_num_pad, container, false);
             //binding = DataBindingUtil.setContentView(requireActivity(),R.layout.fragment_num_pad);
-            binding.setTest(new Test());
+            binding.setData(new Test());
         }
+
         return binding.getRoot();
     }
 }
