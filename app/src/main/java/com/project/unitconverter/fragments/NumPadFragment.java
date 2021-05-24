@@ -1,26 +1,29 @@
 package com.project.unitconverter.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.project.unitconverter.R;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NumPadFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.project.unitconverter.R;
+import com.project.unitconverter.data.Test;
+import com.project.unitconverter.databinding.FragmentNumPadBinding;
+
 public class NumPadFragment extends Fragment {
+    private FragmentNumPadBinding binding = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_num_pad, container, false);
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_num_pad, container, false);
+            //binding = DataBindingUtil.setContentView(requireActivity(),R.layout.fragment_num_pad);
+            binding.setTest(new Test());
+        }
+        return binding.getRoot();
     }
 }

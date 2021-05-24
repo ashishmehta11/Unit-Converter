@@ -5,13 +5,17 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-<!--    <color name="bg_color">#25242e</color>-->
-<!--    <color name="bg_color_light">#455a64</color>-->
-    <color name="bg_color">#0f1329</color>
-    <color name="bg_color_light">#161b30</color>
+    <!--    <color name="bg_color">#25242e</color>-->
+    <!--    <color name="bg_color_light">#455a64</color>-->
+    <!--    <color name="bg_color">#0f1329</color>-->
+    <color name="bg_color">#161524</color>
+    <color name="bg_color_light">#272640</color>
     <color name="primary_dark">#512da8</color>
     <color name="primary_light">#7e57c2</color>
+    <!--    <color name="primary_light">#B14FE4</color>-->
     <color name="black">#000000</color>
 
     <color name="white">#FFFFFFFF</color>
+
+
 </resources>
