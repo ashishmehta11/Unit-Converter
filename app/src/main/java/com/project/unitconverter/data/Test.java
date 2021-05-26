@@ -14,9 +14,29 @@ import java.util.Stack;
 public class Test extends BaseObservable {
     Stack<Integer> operands = new Stack<Integer>();
     Stack<String> operators = new Stack<String>();
+    StringBuilder valueString = new StringBuilder();
 
-    public void clickerListener(String val) {
+    public void operatorClickListener(String val) {
 
     }
 
+    public void operandClickListener(double val) {
+
+    }
+
+    public void btnEqualsClickListener() {
+
+    }
+
+    public void btnTransferClickListener() {
+
+    }
+
+    public void decimalClickListener() {
+
+    }
+
+    public void plusMinusClickListener() {
+
+    }
 }

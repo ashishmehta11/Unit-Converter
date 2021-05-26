@@ -21,7 +21,7 @@
             android:id="@+id/cardView6"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_marginBottom="72dp"
+            android:layout_marginBottom="80dp"
             app:cardBackgroundColor="@color/bg_color_light"
             app:cardElevation="2dp"
             app:layout_constraintBottom_toTopOf="@+id/cardView5"
@@ -32,7 +32,7 @@
             android:id="@+id/cardView5"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_marginBottom="72dp"
+            android:layout_marginBottom="80dp"
             app:cardBackgroundColor="@color/bg_color_light"
             app:cardElevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -43,8 +43,8 @@
             android:id="@+id/cardView7"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_marginTop="72dp"
-            android:layout_marginBottom="72dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="80dp"
             app:cardBackgroundColor="@color/bg_color_light"
             app:cardElevation="2dp"
             app:layout_constraintBottom_toTopOf="@+id/card"
@@ -57,7 +57,7 @@
             android:id="@+id/card"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_marginBottom="72dp"
+            android:layout_marginBottom="80dp"
             app:cardBackgroundColor="@color/bg_color_light"
             app:cardElevation="2dp"
             app:layout_constraintBottom_toTopOf="@+id/cardView6"
@@ -68,8 +68,8 @@
             android:id="@+id/cardView3"
             android:layout_width="1dp"
             android:layout_height="0dp"
-            android:layout_marginStart="88dp"
-            android:layout_marginEnd="88dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginEnd="96dp"
             app:cardBackgroundColor="@color/bg_color_light"
             app:cardElevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -82,8 +82,8 @@
             android:id="@+id/cardView2"
             android:layout_width="1dp"
             android:layout_height="0dp"
-            android:layout_marginStart="176dp"
-            android:layout_marginEnd="176dp"
+            android:layout_marginStart="184dp"
+            android:layout_marginEnd="184dp"
             app:cardBackgroundColor="@color/bg_color_light"
             app:cardElevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -96,8 +96,8 @@
             android:id="@+id/cardView"
             android:layout_width="1dp"
             android:layout_height="0dp"
-            android:layout_marginStart="88dp"
-            android:layout_marginEnd="88dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginEnd="96dp"
             app:cardBackgroundColor="@color/bg_color_light"
             app:cardElevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -106,47 +106,290 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView2"
+        <ImageButton
+            android:id="@+id/imgBtnEqual"
+            android:background="@android:color/transparent"
             android:layout_width="0dp"
+            android:onClick="@{() -> data.btnEqualsClickListener()}"
             android:layout_height="0dp"
-            android:layout_gravity="center"
             android:gravity="center"
-            android:text="C"
-
-            android:textColor="@color/primary_dark"
-            android:textSize="40sp"
-            app:layout_constraintBottom_toTopOf="@+id/cardView7"
-            app:layout_constraintEnd_toStartOf="@+id/cardView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="88dp"
-            android:layout_height="144dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="="
-            android:textColor="@color/primary_light"
-            android:textSize="40sp"
+            android:src="@drawable/ic_equal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardView5"
             app:layout_constraintTop_toBottomOf="@+id/cardView6" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/imgBtnDivide"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@android:color/transparent"
-            android:onClick='@{() -> data.clickerListener("/")}'
             android:elevation="0dp"
+            android:onClick='@{() -> data.operatorClickListener("/")}'
             android:src="@drawable/ic_divide"
             app:layout_constraintBottom_toTopOf="@+id/cardView7"
             app:layout_constraintEnd_toStartOf="@+id/cardView2"
             app:layout_constraintStart_toEndOf="@+id/cardView"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtView8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:gravity="center"
+            android:onClick='@{() -> data.operandClickListener(8)}'
+            android:text="8"
+            android:textSize="@dimen/num_pad_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/card"
+            app:layout_constraintEnd_toStartOf="@+id/cardView2"
+            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView7" />
+
+        <TextView
+            android:id="@+id/txtView5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:gravity="center"
+            android:onClick='@{() -> data.operandClickListener(5)}'
+            android:text="5"
+            android:textSize="@dimen/num_pad_text_size"
+
+            app:layout_constraintBottom_toTopOf="@+id/cardView6"
+            app:layout_constraintEnd_toStartOf="@+id/cardView2"
+            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/card" />
+
+        <TextView
+            android:id="@+id/txtView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:gravity="center"
+            android:onClick='@{() -> data.operandClickListener(2)}'
+            android:text="2"
+            android:textSize="@dimen/num_pad_text_size"
+
+            app:layout_constraintBottom_toTopOf="@+id/cardView5"
+            app:layout_constraintEnd_toStartOf="@+id/cardView2"
+            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView6" />
+
+        <TextView
+            android:id="@+id/txtView0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:onClick='@{() -> data.operandClickListener(0)}'
+            android:text="0"
+            android:elevation="0dp"
+            android:textSize="@dimen/num_pad_text_size"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cardView2"
+            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView5" />
+
+        <ImageButton
+            android:id="@+id/imgBtnClear"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:onClick='@{() -> data.operatorClickListener("c")}'
+            android:src="@drawable/ic_c"
+            app:layout_constraintBottom_toTopOf="@+id/cardView7"
+            app:layout_constraintEnd_toStartOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtView7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:elevation="0dp"
+            android:gravity="center"
+            android:onClick='@{() -> data.operandClickListener(7)}'
+            android:text="7"
+            android:textSize="@dimen/num_pad_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/card"
+            app:layout_constraintEnd_toStartOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView7" />
+
+        <TextView
+            android:id="@+id/txtView4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:gravity="center"
+            android:onClick='@{() -> data.operandClickListener(4)}'
+            android:text="4"
+            android:textSize="@dimen/num_pad_text_size"
+
+            app:layout_constraintBottom_toTopOf="@+id/cardView6"
+            app:layout_constraintEnd_toStartOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card" />
+
+        <TextView
+            android:id="@+id/txtView1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:gravity="center"
+            android:onClick='@{() -> data.operandClickListener(1)}'
+            android:text="1"
+            android:textSize="@dimen/num_pad_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/cardView5"
+            app:layout_constraintEnd_toStartOf="@+id/cardView"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView6"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:id="@+id/imgBtnPlusMinus"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:onClick='@{() -> data.plusMinusClickListener()}'
+            android:src="@drawable/ic_plus_and_minus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cardView"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView5"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:id="@+id/imgBtnTransfer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:onClick='@{() -> data.btnTransferClickListener()}'
+            android:src="@drawable/ic_transfer"
+            app:layout_constraintBottom_toTopOf="@+id/cardView7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardView3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imgBtnMinus"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:onClick='@{() -> data.operatorClickListener("-")}'
+            android:src="@drawable/ic_minus"
+            app:layout_constraintBottom_toTopOf="@+id/card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardView3"
+            app:layout_constraintTop_toBottomOf="@+id/cardView7" />
+
+        <ImageButton
+            android:id="@+id/imgBtnPlus"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:onClick='@{() -> data.operatorClickListener("+")}'
+            android:src="@drawable/ic_plus"
+            app:layout_constraintBottom_toTopOf="@+id/cardView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardView3"
+            app:layout_constraintTop_toBottomOf="@+id/card" />
+
+        <ImageButton
+            android:id="@+id/imgBtnMultiply"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:onClick='@{() -> data.operatorClickListener("x")}'
+            android:src="@drawable/ic_multiply"
+            app:layout_constraintBottom_toTopOf="@+id/cardView7"
+            app:layout_constraintEnd_toStartOf="@+id/cardView3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/cardView2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/txtView9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:gravity="center"
+            android:onClick='@{() -> data.operandClickListener(9)}'
+            android:text="9"
+            android:textSize="@dimen/num_pad_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/card"
+            app:layout_constraintEnd_toStartOf="@+id/cardView3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/cardView2"
+            app:layout_constraintTop_toBottomOf="@+id/cardView7"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/txtView6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:gravity="center"
+            android:onClick='@{() -> data.operandClickListener(6)}'
+            android:text="6"
+            android:textSize="@dimen/num_pad_text_size"
+
+            app:layout_constraintBottom_toTopOf="@+id/cardView6"
+            app:layout_constraintEnd_toStartOf="@+id/cardView3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/cardView2"
+            app:layout_constraintTop_toBottomOf="@+id/card"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/txtView3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:gravity="center"
+            android:onClick='@{() -> data.operandClickListener(3)}'
+            android:text="3"
+            android:textSize="@dimen/num_pad_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/cardView5"
+            app:layout_constraintEnd_toStartOf="@+id/cardView3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/cardView2"
+            app:layout_constraintTop_toBottomOf="@+id/cardView6"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:id="@+id/imgBtnDecimalPoint"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:onClick='@{() -> data.decimalClickListener()}'
+            android:src="@drawable/ic_baseline_circle_8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cardView3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/cardView2"
+            app:layout_constraintTop_toBottomOf="@+id/cardView5"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
