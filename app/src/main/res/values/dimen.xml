@@ -2,5 +2,8 @@
 <resources>
     <dimen name="normal_border_margin">16dp</dimen>
     <dimen name="small_border_margin">8dp</dimen>
-    <dimen name="num_pad_text_size">28sp</dimen>
+    <dimen name="num_pad_text_size">24sp</dimen>
+    <dimen name="num_pad_cell_height">75dp</dimen>
+    <dimen name="num_pad_cell_width">93dp</dimen>
+    <dimen name="num_pad_cell_width_x_2">186dp</dimen>
 </resources>

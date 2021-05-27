@@ -19,8 +19,19 @@
         tools:context=".main_activity.MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentUnitSelector"
+            android:name="com.project.unitconverter.main_activity.fragments.unit_selector.UnitSelector"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout="@layout/fragment_unit_selector" />
+
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentNumPad"
-            android:name="com.project.unitconverter.fragments.NumPadFragment"
+            android:name="com.project.unitconverter.main_activity.fragments.num_pad.NumPadFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -31,6 +42,20 @@
             tools:layout="@layout/fragment_num_pad">
 
         </androidx.fragment.app.FragmentContainerView>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentConverter"
+            android:name="com.project.unitconverter.main_activity.fragments.converter.Converter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/fragmentNumPad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentUnitSelector" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
