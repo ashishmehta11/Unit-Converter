@@ -8,7 +8,7 @@
 
         <variable
             name="data"
-            type="com.project.unitconverter.data.Test" />
+            type="com.project.unitconverter.data.Data" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

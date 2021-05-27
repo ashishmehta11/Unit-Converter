@@ -11,7 +11,7 @@ import java.util.Stack;
  * Any change in the variables which are bound to the views, results in the change in the value of the view itself and vic-versa.
  */
 
-public class Test extends BaseObservable {
+public class Data extends BaseObservable {
     Stack<Integer> operands = new Stack<Integer>();
     Stack<String> operators = new Stack<String>();
     StringBuilder valueString = new StringBuilder();

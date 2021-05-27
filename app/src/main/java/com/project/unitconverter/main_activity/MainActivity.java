@@ -3,10 +3,12 @@ package com.project.unitconverter.main_activity;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.project.unitconverter.R;
-import com.project.unitconverter.data.Test;
+import com.project.unitconverter.data.Data;
 import com.project.unitconverter.databinding.ActivityMainBinding;
 
 /**
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         // Initializing the binding instance with the layout to be used.
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         // Setting test class instance as the variable to be used by ActivityMainBinding
-        binding.setData(new Test());
+        binding.setData(new Data());
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        CardView cv = new CardView(this);
     }
 }
