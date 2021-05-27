@@ -2,9 +2,9 @@
 <gradient xmlns:android="http://schemas.android.com/apk/res/android"
     android:angle="0"
     android:endColor="@color/primary_dark"
-    android:endX="300"
-    android:endY="50"
+    android:endX="5"
+    android:endY="20"
     android:startColor="@color/primary_light"
-    android:startX="0"
-    android:startY="50"
+    android:startX="5"
+    android:startY="0"
     android:type="linear" />

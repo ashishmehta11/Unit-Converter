@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragments.NumPadFragment">
 
     <data>
+
         <variable
             name="data"
             type="com.project.unitconverter.data.Test" />
@@ -108,11 +108,11 @@
 
         <ImageButton
             android:id="@+id/imgBtnEqual"
-            android:background="@android:color/transparent"
             android:layout_width="0dp"
-            android:onClick="@{() -> data.btnEqualsClickListener()}"
             android:layout_height="0dp"
+            android:background="@android:color/transparent"
             android:gravity="center"
+            android:onClick="@{() -> data.btnEqualsClickListener()}"
             android:src="@drawable/ic_equal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -184,10 +184,10 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@android:color/transparent"
+            android:elevation="0dp"
             android:gravity="center"
             android:onClick='@{() -> data.operandClickListener(0)}'
             android:text="0"
-            android:elevation="0dp"
             android:textSize="@dimen/num_pad_text_size"
 
             app:layout_constraintBottom_toBottomOf="parent"
