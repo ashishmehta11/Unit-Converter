@@ -2,8 +2,9 @@ package com.project.unitconverter.data;
 
 
 import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 
-import java.util.Stack;
+import com.project.unitconverter.BR;
 
 /**
  * A class which holds the data of the user's input, output and processing.
@@ -12,23 +13,21 @@ import java.util.Stack;
  */
 
 public class Data extends BaseObservable {
-    Stack<Integer> operands = new Stack<Integer>();
-    Stack<String> operators = new Stack<String>();
-    StringBuilder valueString = new StringBuilder();
+    private StringBuilder valueStringLhs = new StringBuilder();
+    private StringBuilder valueStringRhs = new StringBuilder();
+    private int selectedUnitIndex = 0;
+    private String selectedUnitName;
 
-    public void operatorClickListener(String val) {
-
-    }
-
-    public void operandClickListener(double val) {
+    public void btnDeleteClickListener() {
 
     }
 
-    public void btnEqualsClickListener() {
+    public void numberClickListener(String val) {
 
     }
 
-    public void btnTransferClickListener() {
+
+    public void btnExchangeClickListener() {
 
     }
 
@@ -36,7 +35,43 @@ public class Data extends BaseObservable {
 
     }
 
-    public void plusMinusClickListener() {
 
+    public void btnClearClickListener() {
+
+    }
+
+
+    public int getSelectedUnitIndex() {
+        return selectedUnitIndex;
+    }
+
+    public void setSelectedUnitIndex(int selectedUnitIndex) {
+        this.selectedUnitIndex = selectedUnitIndex;
+    }
+
+    @Bindable
+    public String getSelectedUnitName() {
+        return selectedUnitName;
+    }
+
+    public void setSelectedUnitName(String selectedUnitName) {
+        this.selectedUnitName = selectedUnitName;
+        notifyPropertyChanged(BR.selectedUnitName);
+    }
+
+    public StringBuilder getValueStringRhs() {
+        return valueStringRhs;
+    }
+
+    public void setValueStringRhs(StringBuilder valueStringRhs) {
+        this.valueStringRhs = valueStringRhs;
+    }
+
+    public StringBuilder getValueStringLhs() {
+        return valueStringLhs;
+    }
+
+    public void setValueStringLhs(StringBuilder valueStringLhs) {
+        this.valueStringLhs = valueStringLhs;
     }
 }

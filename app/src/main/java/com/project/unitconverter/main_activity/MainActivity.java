@@ -29,5 +29,6 @@ public class MainActivity extends AppCompatActivity {
         binding.setData(new Data());
         viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         CardView cv = new CardView(this);
+
     }
 }

@@ -26,4 +26,8 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
     public Data getData() {
         return data;
     }
+
+    public Application getApplication() {
+        return application;
+    }
 }

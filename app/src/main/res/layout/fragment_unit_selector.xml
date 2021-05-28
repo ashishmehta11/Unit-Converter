@@ -22,10 +22,11 @@
             android:layout_gravity="center"
             android:textStyle="bold"
             android:paddingStart="24dp"
-            android:text="Density"
-            android:textSize="32sp" />
+            android:text="@={data.selectedUnitName}"
+            android:textSize="30sp" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewUnits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

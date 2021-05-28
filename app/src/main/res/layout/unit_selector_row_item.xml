@@ -10,11 +10,12 @@
     </data>
     <!--   -->
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="70dp"
+        android:id="@+id/cardView"
+        android:layout_width="95dp"
+        android:layout_height="65dp"
         android:layout_marginEnd="8dp"
-        app:cardBackgroundColor="@{itemData.itemSelected ? @color/white : @color/bg_color_light}"
-        app:cardCornerRadius="2dp"
+
+        app:cardCornerRadius="6dp"
         app:contentPadding="4dp"
         app:elevation="4dp">
 
@@ -28,9 +29,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                app:srcCompat="@drawable/ic_light_bulb_white" />
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
 
             <TextView
                 android:id="@+id/textView"
@@ -41,8 +41,8 @@
                 android:gravity="center"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
-                android:text="Illuminessence"
-                android:textColor="@{itemData.itemSelected ? @color/bg_color_light : @color/white}"
+                android:text="@={itemData.unitName}"
+                android:textColor="@{itemData.txtColor}"
                 android:textSize="@dimen/unit_family_desc_txt_size" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>
