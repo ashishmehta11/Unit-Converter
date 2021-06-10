@@ -7,4 +7,8 @@
     <dimen name="num_pad_cell_height">75dp</dimen>
     <dimen name="num_pad_cell_width">93dp</dimen>
     <dimen name="num_pad_cell_width_x_2">186dp</dimen>
+    <dimen name="converter_non_selected_item_name">14sp</dimen>
+    <dimen name="converter_selected_item_name">10sp</dimen>
+    <dimen name="converter_non_selected_item_value">10sp</dimen>
+    <dimen name="converter_selected_item_value">18sp</dimen>
 </resources>

@@ -3,6 +3,7 @@ package com.project.unitconverter.main_activity.fragments.unit_selector;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class UnitSelectionRecyclerAdapter extends RecyclerView.Adapter<UnitSelectionRecyclerAdapter.ViewHolder> {
     final private List<Object[]> units;
-    private Data data;
+    private final Data data;
 
     public UnitSelectionRecyclerAdapter(List<Object[]> units, Data data) {
         this.units = units;
@@ -39,7 +40,7 @@ public class UnitSelectionRecyclerAdapter extends RecyclerView.Adapter<UnitSelec
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.binding.getItemData().setUnitName(units.get(position)[0].toString());
-
+        Log.e("Unit Selector", "onBindViewHolder: !!! " + position + "\n" + units.get(position)[0].toString());
         if (data.getSelectedUnitIndex() == position) {
             holder.binding.cardView.setCardBackgroundColor(ColorStateList.valueOf(Color.parseColor("#ffffff")));
             holder.binding.imageView.setImageDrawable((Drawable) units.get(position)[2]);
