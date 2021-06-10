@@ -17,77 +17,77 @@
         android:foregroundGravity="center_horizontal">
 
 
-        <androidx.cardview.widget.CardView
+        <TextView
             android:id="@+id/cardView6"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginBottom="@dimen/num_pad_cell_height"
-            app:cardBackgroundColor="@color/bg_color_light"
-            app:cardElevation="2dp"
+            android:background="@color/bg_color_light"
+            android:elevation="2dp"
             app:layout_constraintBottom_toTopOf="@+id/cardView5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.cardview.widget.CardView
+        <TextView
             android:id="@+id/cardView5"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginBottom="@dimen/num_pad_cell_height"
-            app:cardBackgroundColor="@color/bg_color_light"
-            app:cardElevation="2dp"
+            android:background="@color/bg_color_light"
+            android:elevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/cardView3"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.cardview.widget.CardView
+        <TextView
             android:id="@+id/card"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginBottom="@dimen/num_pad_cell_height"
             android:layout_marginTop="@dimen/num_pad_cell_height"
-            app:cardBackgroundColor="@color/bg_color_light"
-            app:cardElevation="2dp"
+            android:background="@color/bg_color_light"
+            android:elevation="2dp"
             app:layout_constraintBottom_toTopOf="@+id/cardView6"
             app:layout_constraintEnd_toEndOf="@+id/cardView5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
+        <TextView
             android:id="@+id/cardView3"
             android:layout_width="1dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/num_pad_cell_width"
             android:layout_marginEnd="@dimen/num_pad_cell_width"
-            app:cardBackgroundColor="@color/bg_color_light"
-            app:cardElevation="2dp"
+            android:background="@color/bg_color_light"
+            android:elevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/cardView2"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
+        <TextView
             android:id="@+id/cardView2"
             android:layout_width="1dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/num_pad_cell_width_x_2"
             android:layout_marginEnd="@dimen/num_pad_cell_width_x_2"
-            app:cardBackgroundColor="@color/bg_color_light"
-            app:cardElevation="2dp"
+            android:background="@color/bg_color_light"
+            android:elevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <androidx.cardview.widget.CardView
+        <TextView
             android:id="@+id/cardView"
             android:layout_width="1dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/num_pad_cell_width"
             android:layout_marginEnd="@dimen/num_pad_cell_width"
-            app:cardBackgroundColor="@color/bg_color_light"
-            app:cardElevation="2dp"
+            android:background="@color/bg_color_light"
+            android:elevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/cardView2"
             app:layout_constraintHorizontal_bias="1.0"
@@ -104,8 +104,10 @@
             android:src="@drawable/ic_c"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/cardView5"
-            app:layout_constraintTop_toBottomOf="@+id/cardView6" />
+            app:layout_constraintTop_toBottomOf="@+id/cardView6"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/txtView8"

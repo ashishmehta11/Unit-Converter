@@ -16,13 +16,13 @@ import com.project.unitconverter.data.UnitSelectorRowItem;
 import com.project.unitconverter.databinding.UnitSelectorRowItemBinding;
 import com.project.unitconverter.utils.GeneralUtils;
 
-import java.util.HashMap;
+import java.util.List;
 
 public class UnitSelectionRecyclerAdapter extends RecyclerView.Adapter<UnitSelectionRecyclerAdapter.ViewHolder> {
-    final private HashMap<Integer, Object[]> units;
+    final private List<Object[]> units;
     private Data data;
 
-    public UnitSelectionRecyclerAdapter(HashMap<Integer, Object[]> units, Data data) {
+    public UnitSelectionRecyclerAdapter(List<Object[]> units, Data data) {
         this.units = units;
         this.data = data;
     }
