@@ -2,6 +2,8 @@ package com.project.unitconverter.data;
 
 
 import android.app.Application;
+import android.util.Log;
+import android.widget.EditText;
 
 import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.BaseObservable;
@@ -30,6 +32,8 @@ public class Data extends BaseObservable {
     private StringBuilder valueStringRhs = new StringBuilder("1");
     private String selectedNameRhs, selectedNameLhs;
     private boolean lToR = true;
+    private int leftCursorStart = 0, leftCursorEnd = 0, rightCursorStart = 0, rightCursorEnd = 0;
+    private EditText edLeft, edRight;
 
     public Data(Application application) {
         selectedItemRhs = selectedItemLhs = 3;
@@ -94,10 +98,50 @@ public class Data extends BaseObservable {
     }
 
     public void btnDeleteClickListener() {
+        if (islToR()) {
+            if (leftCursorStart == leftCursorEnd && leftCursorEnd > 0) {
+                this.valueStringLhs.replace(leftCursorStart - 1, leftCursorEnd, "");
+                notifyPropertyChanged(BR.valueStringLhs);
+                if (edLeft != null && edRight != null)
+                    edLeft.setSelection(leftCursorStart - 1, leftCursorEnd - 1);
+            } else if (leftCursorStart == leftCursorEnd && leftCursorEnd == 0) {
+                this.valueStringLhs.replace(0, 0, "");
+                notifyPropertyChanged(BR.valueStringLhs);
+                if (edLeft != null && edRight != null)
+                    edLeft.setSelection(0, 0);
+            } else {
+                this.valueStringLhs.replace(leftCursorStart - 1, leftCursorEnd, "");
+                notifyPropertyChanged(BR.valueStringLhs);
+                if (edLeft != null && edRight != null)
+                    edLeft.setSelection(leftCursorStart, leftCursorEnd);
+            }
+        } else {
+            if (rightCursorStart == rightCursorEnd && rightCursorStart > 0) {
+                Log.d("Data", "btnDeleteClickListener: rt len :" + this.valueStringRhs.length() + " rtStart :" + rightCursorStart);
+                this.valueStringRhs.replace(rightCursorStart - 1, rightCursorEnd, "");
+                if (edLeft != null && edRight != null)
+                    edRight.setSelection(rightCursorStart - 1, rightCursorEnd - 1);
+            } else if (rightCursorStart == rightCursorEnd && rightCursorEnd == 0) {
+                this.valueStringRhs.replace(0, 0, "");
+                notifyPropertyChanged(BR.valueStringRhs);
+                if (edLeft != null && edRight != null)
+                    edRight.setSelection(0, 0);
+            } else {
+                this.valueStringRhs.replace(rightCursorStart - 1, rightCursorEnd, "");
+                if (edLeft != null && edRight != null)
+                    edRight.setSelection(rightCursorStart, rightCursorEnd);
+            }
+            notifyPropertyChanged(BR.valueStringRhs);
+
+        }
+
     }
 
     public void numberClickListener(String val) {
-
+        if (islToR())
+            setValueStringLhs(val, false);
+        else
+            setValueStringRhs(val, false);
     }
 
 
@@ -106,12 +150,15 @@ public class Data extends BaseObservable {
     }
 
     public void decimalClickListener() {
-
+        numberClickListener(".");
     }
 
 
     public void btnClearClickListener() {
-
+        if (islToR())
+            setValueStringLhs("0", true);
+        else
+            setValueStringRhs("0", true);
     }
 
 
@@ -130,6 +177,7 @@ public class Data extends BaseObservable {
 
     public void setSelectedUnitName(String selectedUnitName) {
         this.selectedUnitName = selectedUnitName;
+
         notifyPropertyChanged(BR.selectedUnitName);
     }
 
@@ -138,9 +186,20 @@ public class Data extends BaseObservable {
         return valueStringRhs.toString();
     }
 
-    public void setValueStringRhs(Object valueStringRhs) {
-        this.valueStringRhs.append(valueStringRhs);
+    public void setValueStringRhs(Object valueStringRhs, boolean toMakeNew) {
+        if (!toMakeNew) {
+            if (rightCursorStart == rightCursorEnd) {
+                this.valueStringRhs.insert(rightCursorStart, valueStringLhs);
+            } else {
+                this.valueStringRhs.replace(rightCursorStart, rightCursorEnd, valueStringRhs.toString());
+            }
+        } else {
+            this.valueStringRhs = new StringBuilder();
+            this.valueStringRhs.append(valueStringRhs);
+        }
         notifyPropertyChanged(BR.valueStringRhs);
+        if (edLeft != null && edRight != null)
+            edRight.setSelection(rightCursorStart, rightCursorEnd);
     }
 
     @Bindable
@@ -148,14 +207,21 @@ public class Data extends BaseObservable {
         return valueStringLhs.toString();
     }
 
-    public void setValueStringLhs(String valueStringLhs) {
-        this.valueStringLhs.append(valueStringLhs);
-        notifyPropertyChanged(BR.valueStringLhs);
-    }
 
-    public void setValueStringLhs(Object valueStringLhs) {
-        this.valueStringLhs.append(valueStringLhs);
+    public void setValueStringLhs(Object valueStringLhs, boolean toMakeNew) {
+        if (!toMakeNew) {
+            if (leftCursorStart == leftCursorEnd) {
+                this.valueStringLhs.insert(leftCursorStart, valueStringLhs);
+            } else {
+                this.valueStringLhs.replace(leftCursorStart, leftCursorEnd, valueStringLhs.toString());
+            }
+        } else {
+            this.valueStringLhs = new StringBuilder();
+            this.valueStringLhs.append(valueStringLhs);
+        }
         notifyPropertyChanged(BR.valueStringLhs);
+        if (edLeft != null && edRight != null)
+            edLeft.setSelection(leftCursorStart, leftCursorEnd);
     }
 
 
@@ -213,10 +279,9 @@ public class Data extends BaseObservable {
         //Divide val with the change rate of convertedVal
         double convertedVal = Double.parseDouble(unitRange.get(selectedUnitIndex).get(selectedItemRhs)[2].toString());
         convertedVal = val / convertedVal;
-        valueStringRhs = new StringBuilder();
         DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
         df.setMaximumFractionDigits(340);
-        setValueStringRhs(df.format(convertedVal));
+        setValueStringRhs(df.format(convertedVal), true);
     }
 
     private void convertRToL() {
@@ -225,10 +290,10 @@ public class Data extends BaseObservable {
         //Divide val with the change rate of convertedVal
         double convertedVal = Double.parseDouble(unitRange.get(selectedUnitIndex).get(selectedItemLhs)[2].toString());
         convertedVal = val / convertedVal;
-        valueStringLhs = new StringBuilder();
+
         DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
         df.setMaximumFractionDigits(340);
-        setValueStringLhs(df.format(convertedVal));
+        setValueStringLhs(df.format(convertedVal), true);
     }
 
     public boolean islToR() {
@@ -238,5 +303,45 @@ public class Data extends BaseObservable {
     public void setlToR(boolean lToR) {
         this.lToR = lToR;
         convert();
+    }
+
+    public int getLeftCursorStart() {
+        return leftCursorStart;
+    }
+
+    public void setLeftCursorStart(int leftCursorStart) {
+        this.leftCursorStart = leftCursorStart;
+    }
+
+    public int getLeftCursorEnd() {
+        return leftCursorEnd;
+    }
+
+    public void setLeftCursorEnd(int leftCursorEnd) {
+        this.leftCursorEnd = leftCursorEnd;
+    }
+
+    public int getRightCursorStart() {
+        return rightCursorStart;
+    }
+
+    public void setRightCursorStart(int rightCursorStart) {
+        this.rightCursorStart = rightCursorStart;
+    }
+
+    public int getRightCursorEnd() {
+        return rightCursorEnd;
+    }
+
+    public void setRightCursorEnd(int rightCursorEnd) {
+        this.rightCursorEnd = rightCursorEnd;
+    }
+
+    public void setEdLeft(EditText edLeft) {
+        this.edLeft = edLeft;
+    }
+
+    public void setEdRight(EditText edRight) {
+        this.edRight = edRight;
     }
 }

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
 
 import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
@@ -39,7 +40,15 @@ public class Converter extends Fragment {
         }
 
         binding.edValueLeft.setShowSoftInputOnFocus(false);
+//        binding.edValueLeft.setCursorVisible(false);
+//        binding.edValueRight.setCursorVisible(false);
+        binding.edValueRight.setFocusableInTouchMode(false);
+        binding.edValueLeft.requestFocus();
+
         binding.edValueRight.setShowSoftInputOnFocus(false);
+
+        viewModel.getData().setEdLeft(binding.edValueLeft);
+        viewModel.getData().setEdRight(binding.edValueRight);
 
         DividerItemDecoration divider = new
                 DividerItemDecoration(requireContext(),
@@ -92,13 +101,57 @@ public class Converter extends Fragment {
                                 , R.drawable.ic_baseline_keyboard_arrow_left_32
                                 , requireActivity().getTheme()));
                 viewModel.getData().setlToR(false);
+                //binding.edValueLeft.clearFocus();
+                binding.edValueLeft.setFocusableInTouchMode(false);
+                binding.edValueRight.setFocusableInTouchMode(true);
+                binding.edValueRight.requestFocus();
+                Log.d("Converter", "onCreateView: fab click listener hand over to right is rt focuable:" + binding.edValueRight.isFocusableInTouchMode());
             } else {
                 binding.imgConversionSide.setImageDrawable(ResourcesCompat
                         .getDrawable(requireContext().getResources()
                                 , R.drawable.ic_baseline_keyboard_arrow_right_24
                                 , requireActivity().getTheme()));
                 viewModel.getData().setlToR(true);
+                //binding.edValueRight.clearFocus();
+                binding.edValueRight.setFocusableInTouchMode(false);
+                binding.edValueLeft.setFocusableInTouchMode(true);
+                binding.edValueLeft.requestFocus();
+                Log.d("Converter", "onCreateView: fab click listener hand over to left is lt focuable:" + binding.edValueLeft.isFocusableInTouchMode());
             }
+        });
+
+        binding.edValueRight.setAccessibilityDelegate(new View.AccessibilityDelegate() {
+            @Override
+            public void sendAccessibilityEvent(View host, int eventType) {
+                super.sendAccessibilityEvent(host, eventType);
+                if (eventType == AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED) {
+                    Log.d("Converter", "sendAccessibilityEvent: Right sel start :" + binding.edValueRight.getSelectionStart());
+                    Log.d("Converter", "sendAccessibilityEvent: Right sel end :" + binding.edValueRight.getSelectionEnd());
+                    viewModel.getData().setRightCursorStart(binding.edValueRight.getSelectionStart());
+                    viewModel.getData().setRightCursorEnd(binding.edValueRight.getSelectionEnd());
+                }
+            }
+        });
+
+        binding.edValueLeft.setAccessibilityDelegate(new View.AccessibilityDelegate() {
+            @Override
+            public void sendAccessibilityEvent(View host, int eventType) {
+                super.sendAccessibilityEvent(host, eventType);
+                if (eventType == AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED) {
+                    Log.d("Converter", "sendAccessibilityEvent:  Left sel start :" + binding.edValueLeft.getSelectionStart());
+                    Log.d("Converter", "sendAccessibilityEvent: Left sel end :" + binding.edValueLeft.getSelectionEnd());
+                    viewModel.getData().setLeftCursorStart(binding.edValueLeft.getSelectionStart());
+                    viewModel.getData().setLeftCursorEnd(binding.edValueLeft.getSelectionEnd());
+                }
+            }
+        });
+        binding.llLeft.setOnClickListener(v -> {
+            if (viewModel.getData().islToR())
+                binding.edValueLeft.requestFocus();
+        });
+        binding.llRight.setOnClickListener(v -> {
+            if (!viewModel.getData().islToR())
+                binding.edValueRight.requestFocus();
         });
         return binding.getRoot();
     }

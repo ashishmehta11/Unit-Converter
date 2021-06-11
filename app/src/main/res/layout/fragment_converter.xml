@@ -61,14 +61,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
-                    android:id="@+id/linearLayout"
+                    android:id="@+id/llLeft"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@color/primary_light"
                     android:gravity="end|center"
                     android:orientation="vertical"
-                    android:paddingEnd="32dp"
-                    android:paddingStart="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView3"
                     app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +74,8 @@
 
 
                     <TextView
+                        android:paddingStart="16dp"
+                        android:paddingEnd="32dp"
                         android:id="@+id/txtNameLeft"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -89,7 +89,9 @@
 
                     <EditText
                         android:id="@+id/edValueLeft"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="32dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:background="@android:color/transparent"
@@ -101,13 +103,12 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llRight"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@color/primary_dark"
                     android:gravity="start|center"
                     android:orientation="vertical"
-                    android:paddingStart="32dp"
-                    android:paddingEnd="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -115,6 +116,8 @@
 
                     <TextView
                         android:id="@+id/txtNameRight"
+                        android:paddingStart="32dp"
+                        android:paddingEnd="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="start"
@@ -127,7 +130,9 @@
 
                     <EditText
                         android:id="@+id/edValueRight"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:paddingStart="32dp"
+                        android:paddingEnd="16dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:background="@android:color/transparent"
