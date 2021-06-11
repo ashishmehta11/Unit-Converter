@@ -9,6 +9,7 @@
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:gravity="@{data.gravity}"
@@ -18,7 +19,9 @@
 
         <TextView
             android:id="@+id/txtName"
-
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"

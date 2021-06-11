@@ -54,6 +54,7 @@ public class RecyclerLeftAdapter extends RecyclerView.Adapter<RecyclerLeftAdapte
             super(binding.getRoot());
             this.binding = binding;
             binding.getData().setGravity(Gravity.END | Gravity.CENTER);
+            binding.txtName.setSelected(true);
         }
     }
 }

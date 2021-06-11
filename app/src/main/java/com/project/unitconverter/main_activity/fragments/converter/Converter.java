@@ -83,8 +83,23 @@ public class Converter extends Fragment {
         });
 
         viewModel.getUnitFamilyChangedNotifier().observe(getViewLifecycleOwner(), integer -> notifyChange());
-
-
+        binding.txtNameLeft.setSelected(true);
+        binding.txtNameRight.setSelected(true);
+        binding.floatingActionButton.setOnClickListener(v -> {
+            if (viewModel.getData().islToR()) {
+                binding.imgConversionSide.setImageDrawable(ResourcesCompat
+                        .getDrawable(requireContext().getResources()
+                                , R.drawable.ic_baseline_keyboard_arrow_left_32
+                                , requireActivity().getTheme()));
+                viewModel.getData().setlToR(false);
+            } else {
+                binding.imgConversionSide.setImageDrawable(ResourcesCompat
+                        .getDrawable(requireContext().getResources()
+                                , R.drawable.ic_baseline_keyboard_arrow_right_24
+                                , requireActivity().getTheme()));
+                viewModel.getData().setlToR(true);
+            }
+        });
         return binding.getRoot();
     }
 
