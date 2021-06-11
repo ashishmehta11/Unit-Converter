@@ -27,7 +27,7 @@ public class UnitSelector extends Fragment {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_unit_selector, container, false);
             binding.setData(viewModel.getData());
         }
-        UnitSelectionRecyclerAdapter adapter = new UnitSelectionRecyclerAdapter(viewModel.getUnitFamilies(), viewModel.getData());
+        UnitSelectionRecyclerAdapter adapter = new UnitSelectionRecyclerAdapter(viewModel.getData(), viewModel);
         binding.recyclerViewUnits.setAdapter(adapter);
         return binding.getRoot();
     }

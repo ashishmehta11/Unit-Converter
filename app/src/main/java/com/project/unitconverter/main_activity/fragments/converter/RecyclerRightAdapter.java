@@ -11,9 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.unitconverter.R;
 import com.project.unitconverter.data.ConverterRowItem;
+import com.project.unitconverter.data.Data;
 import com.project.unitconverter.databinding.ConverterRowItemBinding;
 
 public class RecyclerRightAdapter extends RecyclerView.Adapter<RecyclerRightAdapter.ViewHolder> {
+    private Data data;
+
+    public RecyclerRightAdapter(Data data) {
+        this.data = data;
+    }
+
     @NonNull
 
     @Override
@@ -26,14 +33,18 @@ public class RecyclerRightAdapter extends RecyclerView.Adapter<RecyclerRightAdap
     @Override
     public void onBindViewHolder(@NonNull RecyclerRightAdapter.ViewHolder holder, int position) {
         Log.d("Unit Converter", "onBindViewHolder right:  !!! " + position);
-        holder.binding.getData().setGravity(Gravity.START | Gravity.CENTER);
-        holder.binding.getData().setName("Feet");
-        holder.binding.getData().setValue("ft");
+        String name = "", value = "";
+        if (Data.getUnitRange().get(data.getSelectedUnitIndex()).get(position + 1).length > 0) {
+            name = Data.getUnitRange().get(data.getSelectedUnitIndex()).get(position + 1)[0].toString();
+            value = Data.getUnitRange().get(data.getSelectedUnitIndex()).get(position + 1)[1].toString();
+        }
+        holder.binding.getData().setName(name);
+        holder.binding.getData().setValue(value);
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return Data.getUnitRange().get(data.getSelectedUnitIndex()).size() - 1;
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {
@@ -42,6 +53,7 @@ public class RecyclerRightAdapter extends RecyclerView.Adapter<RecyclerRightAdap
         public ViewHolder(@NonNull ConverterRowItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+            binding.getData().setGravity(Gravity.START | Gravity.CENTER);
         }
     }
 }

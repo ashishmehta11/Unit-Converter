@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.project.unitconverter.R;
-import com.project.unitconverter.data.Data;
 import com.project.unitconverter.databinding.ActivityMainBinding;
 
 /**
@@ -23,11 +22,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         // Initializing the binding instance with the layout to be used.
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         // Setting test class instance as the variable to be used by ActivityMainBinding
-        binding.setData(new Data());
-        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        binding.setData(viewModel.getData());
         CardView cv = new CardView(this);
 
     }
