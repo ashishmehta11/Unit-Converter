@@ -26,7 +26,6 @@ public class Converter extends Fragment {
     private MainActivityViewModel viewModel;
     private RecyclerLeftAdapter leftAdapter;
     private RecyclerRightAdapter rightAdapter;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
