@@ -41,8 +41,8 @@ public class Data extends BaseObservable {
 //        selectedItemRhs=selectedItemLhs=2;
         if (unitRange.isEmpty())
             buildUnitRange(application);
-        setSelectedNameRhs(unitRange.get(selectedUnitIndex).get(selectedItemRhs)[0].toString());
-        setSelectedNameLhs(unitRange.get(selectedUnitIndex).get(selectedItemLhs)[0].toString());
+        setSelectedNameRhs(Objects.requireNonNull(unitRange.get(selectedUnitIndex)).get(selectedItemRhs)[0].toString());
+        setSelectedNameLhs(Objects.requireNonNull(unitRange.get(selectedUnitIndex)).get(selectedItemLhs)[0].toString());
     }
 
     private void buildUnitRange(Application application) {
@@ -102,29 +102,36 @@ public class Data extends BaseObservable {
         if (islToR()) {
             if (leftCursorStart == leftCursorEnd && leftCursorEnd > 0) {
                 this.valueStringLhs.replace(leftCursorStart - 1, leftCursorEnd, "");
-                notifyPropertyChanged(BR.valueStringLhs);
                 if (edLeft != null && edRight != null) {
-                    final int arr[] = new int[]{leftCursorStart};
+                    edLeft.setCursorVisible(false);
+                    notifyPropertyChanged(BR.valueStringLhs);
+                    final int[] arr = new int[]{leftCursorStart};
                     edLeft.postDelayed(() -> {
                         int var = edLeft.getText().length() - arr[0];
                         Log.d("Tag", "converter !@ : backspace btn : " + edLeft.getText().toString() + " len : " + edLeft.getText().length() + " var:" + var + " rtCursorSt :" + arr[0]);
                         Selection.setSelection(edLeft.getText(), arr[0] <= 0 ? 0 : (arr[0] - 1));
+                        edLeft.setCursorVisible(true);
                     }, 15);
                 }
             } else if (leftCursorStart == leftCursorEnd && leftCursorEnd == 0) {
                 this.valueStringLhs.replace(0, 0, "");
-                notifyPropertyChanged(BR.valueStringLhs);
-                if (edLeft != null && edRight != null)
+                if (edLeft != null && edRight != null) {
+                    edLeft.setCursorVisible(false);
+                    notifyPropertyChanged(BR.valueStringLhs);
                     edLeft.setSelection(0, 0);
+                    edLeft.setCursorVisible(true);
+                }
             } else {
                 this.valueStringLhs.replace(leftCursorStart, leftCursorEnd, "");
-                notifyPropertyChanged(BR.valueStringLhs);
                 if (edLeft != null && edRight != null) {
-                    final int arr[] = new int[]{leftCursorStart, leftCursorEnd};
+                    edLeft.setCursorVisible(false);
+                    notifyPropertyChanged(BR.valueStringLhs);
+                    final int[] arr = new int[]{leftCursorStart, leftCursorEnd};
                     edLeft.postDelayed(() -> {
                         int var = edLeft.getText().length() - arr[0];
                         Log.d("Tag", "converter !@ : backspace btn : " + edLeft.getText().toString() + " len : " + edLeft.getText().length() + " var:" + var + " rtCursorSt :" + arr[0]);
                         Selection.setSelection(edLeft.getText(), Math.min(arr[0], edLeft.getText().length()));
+                        edLeft.setCursorVisible(true);
                     }, 15);
                 }
             }
@@ -132,28 +139,37 @@ public class Data extends BaseObservable {
             if (rightCursorStart == rightCursorEnd && rightCursorStart > 0) {
                 Log.d("Data", "btnDeleteClickListener: rt len :" + this.valueStringRhs.length() + " rtStart :" + rightCursorStart);
                 this.valueStringRhs.replace(rightCursorStart - 1, rightCursorEnd, "");
-                notifyPropertyChanged(BR.valueStringRhs);
                 if (edLeft != null && edRight != null) {
-                    final int arr[] = new int[]{rightCursorStart};
+                    edRight.setCursorVisible(false);
+                    notifyPropertyChanged(BR.valueStringRhs);
+                    final int[] arr = new int[]{rightCursorStart};
                     edRight.postDelayed(() -> {
                         int var = edRight.getText().length() - arr[0];
                         Log.d("Tag", "converter !@ : backspace btn : " + edRight.getText().toString() + " len : " + edRight.getText().length() + " var:" + var + " rtCursorSt :" + arr[0]);
                         Selection.setSelection(edRight.getText(), arr[0] <= 0 ? 0 : (arr[0] - 1));
+                        edRight.setCursorVisible(true);
                     }, 15);
                 }
             } else if (rightCursorStart == rightCursorEnd && rightCursorEnd == 0) {
                 this.valueStringRhs.replace(0, 0, "");
-                notifyPropertyChanged(BR.valueStringRhs);
-                if (edLeft != null && edRight != null)
+                if (edLeft != null && edRight != null) {
+                    edRight.setCursorVisible(false);
+                    notifyPropertyChanged(BR.valueStringRhs);
                     edRight.setSelection(0, 0);
+                    edRight.setCursorVisible(true);
+                }
             } else {
                 this.valueStringRhs.replace(rightCursorStart, rightCursorEnd, "");
+                if (edLeft != null && edRight != null)
+                    edRight.setCursorVisible(false);
                 notifyPropertyChanged(BR.valueStringRhs);
-                final int arr[] = new int[]{rightCursorStart, rightCursorEnd};
+                final int[] arr = new int[]{rightCursorStart, rightCursorEnd};
                 edRight.postDelayed(() -> {
                     int var = edRight.getText().length() - arr[0];
                     Log.d("Tag", "converter !@ : backspace btn : " + edRight.getText().toString() + " len : " + edRight.getText().length() + " var:" + var + " rtCursorSt :" + arr[0]);
                     Selection.setSelection(edRight.getText(), Math.min(arr[0], edRight.getText().length()));
+                    if (edLeft != null && edRight != null)
+                        edRight.setCursorVisible(true);
                 }, 15);
             }
 
@@ -242,17 +258,20 @@ public class Data extends BaseObservable {
             this.valueStringRhs = new StringBuilder();
             this.valueStringRhs.append(valueStringRhs);
         }
+        if (edLeft != null && edRight != null)
+            edRight.setCursorVisible(false);
         notifyPropertyChanged(BR.valueStringRhs);
         if (edLeft != null && edRight != null) {
             Log.d("Converter", "setValueStringRhs: rightCursor start :" + rightCursorStart + " rightCursor end : " + rightCursorEnd + " txt len " + edRight.getText().length());
             //edRight.requestFocus();
             //edRight.post(()->edRight.selectAll());
-            final int arr[] = new int[]{rightCursorStart};
+            final int[] arr = new int[]{rightCursorStart};
             edRight.postDelayed(() -> {
                 int var = edRight.getText().length() - arr[0];
                 Log.d("Tag", "converter !@ : text : " + edRight.getText().toString() + " len : " + edRight.getText().length() + " var:" + var + " rtCursorSt :" + arr[0]);
                 Selection.setSelection(edRight.getText(), arr[0] >= edRight.getText().length() ? edRight.getText().length() : (arr[0] + 1));
                 //edRight.setSelection((edRight.getText().length() - (edRight.getText().length()-rightCursorStart) ));
+                edRight.setCursorVisible(true);
             }, 15);
             //edRight.selectAll();
         }
@@ -276,13 +295,16 @@ public class Data extends BaseObservable {
             this.valueStringLhs = new StringBuilder();
             this.valueStringLhs.append(valueStringLhs);
         }
+        if (edLeft != null && edRight != null)
+            edLeft.setCursorVisible(false);
         notifyPropertyChanged(BR.valueStringLhs);
         if (edLeft != null && edRight != null) {
-            final int arr[] = new int[]{leftCursorStart};
+            final int[] arr = new int[]{leftCursorStart};
             edLeft.postDelayed(() -> {
                 int var = edLeft.getText().length() - arr[0];
                 Log.d("Tag", "converter !@ : text lft: " + edLeft.getText().toString() + " len : " + edLeft.getText().length() + " var:" + var + " ltCursorSt :" + arr[0]);
                 Selection.setSelection(edLeft.getText(), arr[0] >= edLeft.getText().length() ? edLeft.getText().length() : (arr[0] + 1));
+                edLeft.setCursorVisible(true);
                 //edRight.setSelection((edRight.getText().length() - (edRight.getText().length()-rightCursorStart) ));
             }, 15);
             //edLeft.setSelection(leftCursorStart, leftCursorEnd);
@@ -313,9 +335,6 @@ public class Data extends BaseObservable {
         convert();
     }
 
-    public int getSelectedItemLhs() {
-        return selectedItemLhs;
-    }
 
     private void convert() {
         if (!islToR())
@@ -326,24 +345,27 @@ public class Data extends BaseObservable {
 
     public void setSelectedItemLhs(int selectedItemLhs) {
         this.selectedItemLhs = selectedItemLhs;
-        setSelectedNameLhs(unitRange.get(selectedUnitIndex).get(selectedItemLhs)[0].toString());
+        setSelectedNameLhs(Objects.requireNonNull(unitRange.get(selectedUnitIndex)).get(selectedItemLhs)[0].toString());
     }
 
-    public int getSelectedItemRhs() {
-        return selectedItemRhs;
-    }
 
     public void setSelectedItemRhs(int selectedItemRhs) {
         this.selectedItemRhs = selectedItemRhs;
-        setSelectedNameRhs(unitRange.get(selectedUnitIndex).get(selectedItemRhs)[0].toString());
+        setSelectedNameRhs(Objects.requireNonNull(unitRange.get(selectedUnitIndex)).get(selectedItemRhs)[0].toString());
 
     }
 
     private void convertLToR() {
         double val = Double.parseDouble(valueStringLhs.toString());
-        val *= Double.parseDouble(unitRange.get(selectedUnitIndex).get(selectedItemLhs)[2].toString());
+        val *= Double
+                .parseDouble(
+                        Objects
+                                .requireNonNull(unitRange
+                                        .get(selectedUnitIndex))
+                                .get(selectedItemLhs)[2]
+                                .toString());
         //Divide val with the change rate of convertedVal
-        double convertedVal = Double.parseDouble(unitRange.get(selectedUnitIndex).get(selectedItemRhs)[2].toString());
+        double convertedVal = Double.parseDouble(Objects.requireNonNull(unitRange.get(selectedUnitIndex)).get(selectedItemRhs)[2].toString());
         convertedVal = val / convertedVal;
         DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
         df.setMaximumFractionDigits(340);
@@ -352,9 +374,9 @@ public class Data extends BaseObservable {
 
     private void convertRToL() {
         double val = Double.parseDouble(valueStringRhs.toString());
-        val *= Double.parseDouble(unitRange.get(selectedUnitIndex).get(selectedItemRhs)[2].toString());
+        val *= Double.parseDouble(Objects.requireNonNull(unitRange.get(selectedUnitIndex)).get(selectedItemRhs)[2].toString());
         //Divide val with the change rate of convertedVal
-        double convertedVal = Double.parseDouble(unitRange.get(selectedUnitIndex).get(selectedItemLhs)[2].toString());
+        double convertedVal = Double.parseDouble(Objects.requireNonNull(unitRange.get(selectedUnitIndex)).get(selectedItemLhs)[2].toString());
         convertedVal = val / convertedVal;
 
         DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
@@ -371,33 +393,21 @@ public class Data extends BaseObservable {
         convert();
     }
 
-    public int getLeftCursorStart() {
-        return leftCursorStart;
-    }
 
     public void setLeftCursorStart(int leftCursorStart) {
         this.leftCursorStart = leftCursorStart;
     }
 
-    public int getLeftCursorEnd() {
-        return leftCursorEnd;
-    }
 
     public void setLeftCursorEnd(int leftCursorEnd) {
         this.leftCursorEnd = leftCursorEnd;
     }
 
-    public int getRightCursorStart() {
-        return rightCursorStart;
-    }
 
     public void setRightCursorStart(int rightCursorStart) {
         this.rightCursorStart = rightCursorStart;
     }
 
-    public int getRightCursorEnd() {
-        return rightCursorEnd;
-    }
 
     public void setRightCursorEnd(int rightCursorEnd) {
         this.rightCursorEnd = rightCursorEnd;
