@@ -92,6 +92,30 @@ public class Data extends BaseObservable {
                         add(new Object[]{});
                     }
                 });
+        unitRange.putIfAbsent(2,
+                new ArrayList<Object[]>() {
+                    {
+                        add(new Object[]{
+                                "Area"
+                                , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_area_white, application.getTheme()))
+                                , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_area_pink, application.getTheme()))
+                        });
+                        add(new Object[]{});
+                        add(new Object[]{});
+                        add(new Object[]{"Square centimeter", "cm\u00B2", 1});
+                        add(new Object[]{"Square feet", "ft\u00B2", 929.03});
+                        add(new Object[]{"Square inches", "in\u00B2", 6.4516});
+                        add(new Object[]{"Square metres", "m\u00B2", 10000});
+                        add(new Object[]{"Hectares", "ha", 100000000});
+                        add(new Object[]{"Ares", "a", 1000000});
+                        add(new Object[]{"Acres", "ac", 40468564.224});
+                        add(new Object[]{"Square Kilometre", "km\u00B2", 10000000000.0});
+                        add(new Object[]{"Square Mile", "mi\u00B2", 25900000000.0});
+                        add(new Object[]{"Square yard", "yd\u00B2", 8361.27});
+                        add(new Object[]{});
+                        add(new Object[]{});
+                    }
+                });
     }
 
     public static HashMap<Integer, ArrayList<Object[]>> getUnitRange() {

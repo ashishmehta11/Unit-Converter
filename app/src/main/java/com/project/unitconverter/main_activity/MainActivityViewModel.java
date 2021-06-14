@@ -30,6 +30,7 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
         return data;
     }
 
+    @NonNull
     public Application getApplication() {
         return application;
     }
