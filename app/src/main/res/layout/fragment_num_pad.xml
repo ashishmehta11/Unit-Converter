@@ -43,12 +43,12 @@
             android:id="@+id/card"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_marginBottom="@dimen/num_pad_cell_height"
             android:layout_marginTop="@dimen/num_pad_cell_height"
+            android:layout_marginBottom="@dimen/num_pad_cell_height"
             android:background="@color/bg_color_light"
             android:elevation="2dp"
             app:layout_constraintBottom_toTopOf="@+id/cardView6"
-            app:layout_constraintEnd_toEndOf="@+id/cardView5"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -242,10 +242,25 @@
             android:elevation="0dp"
             android:onClick='@{() -> data.btnDeleteClickListener()}'
             android:src="@drawable/ic_outline_backspace_24"
-            app:layout_constraintBottom_toTopOf="@+id/imgBtnClear"
+            app:layout_constraintBottom_toTopOf="@+id/card"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardView3"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imgBtnMinus"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:onClick='@{() -> data.numberClickListener("-")}'
+            android:src="@drawable/ic_minus"
+            app:layout_constraintBottom_toTopOf="@+id/cardView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/cardView3"
+            app:layout_constraintTop_toBottomOf="@+id/card"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/txtView9"

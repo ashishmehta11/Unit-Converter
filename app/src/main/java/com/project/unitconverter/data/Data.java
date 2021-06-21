@@ -35,7 +35,7 @@ public class Data extends BaseObservable {
     private boolean lToR = true;
     private int leftCursorStart = 0, leftCursorEnd = 0, rightCursorStart = 0, rightCursorEnd = 0;
     private EditText edLeft, edRight;
-
+    private final double K = 273.15;
     public Data(Application application) {
         selectedItemRhs = selectedItemLhs = 3;
 //        selectedItemRhs=selectedItemLhs=2;
@@ -113,6 +113,46 @@ public class Data extends BaseObservable {
                         add(new Object[]{"Square Mile", "mi\u00B2", 25900000000.0});
                         add(new Object[]{"Square yard", "yd\u00B2", 8361.27});
                         add(new Object[]{});
+                        add(new Object[]{});
+                    }
+                });
+        unitRange.putIfAbsent(3,
+                new ArrayList<Object[]>() {
+                    {
+                        add(new Object[]{
+                                "Temperature"
+                                , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_thermometer_white, application.getTheme()))
+                                , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_thermometer_pink, application.getTheme()))
+                        });
+                        add(new Object[]{});
+                        add(new Object[]{});
+                        add(new Object[]{"Celsius", "\u00B0C", 1});
+                        add(new Object[]{"Fahrenheit", "\u00B0F", -17.2222222222});
+                        add(new Object[]{"Kelvin", "K", -272.15});
+                        add(new Object[]{});
+                        add(new Object[]{});
+                    }
+                });
+        unitRange.putIfAbsent(4,
+                new ArrayList<Object[]>() {
+                    {
+                        add(new Object[]{
+                                "Length"
+                                , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_length_white, application.getTheme()))
+                                , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_length_pink, application.getTheme()))
+                        });
+                        add(new Object[]{});
+                        add(new Object[]{});
+                        add(new Object[]{"Millimetres", "mm", 1});
+                        add(new Object[]{"Centimetres", "cm", 10});
+                        add(new Object[]{"Metres", "m", 1000});
+                        add(new Object[]{"Kilometres", "km", 1000000});
+                        add(new Object[]{"Inches", "in", 25.4});
+                        add(new Object[]{"Feet", "ft", 304.8});
+                        add(new Object[]{"Yards", "yd", 914.4});
+                        add(new Object[]{"Miles", "mi", 1609344});
+                        add(new Object[]{"Nautical miles", "NM", 1852000});
+                        add(new Object[]{"Mils", "mil", 0.0254});
                         add(new Object[]{});
                     }
                 });
@@ -379,8 +419,137 @@ public class Data extends BaseObservable {
 
     }
 
+    private void tempConvertLtoR() {
+        DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+        df.setMaximumFractionDigits(340);
+        double val;
+        try {
+            val = Double.parseDouble(valueStringLhs.toString());
+        } catch (NumberFormatException e) {
+            val = 0;
+        }
+        switch (selectedItemLhs) {
+            //Celsius selected
+            case 3:
+                switch (selectedItemRhs) {
+                    // C to C
+                    case 3:
+                        setValueStringRhs(valueStringLhs.toString(), true);
+                        break;
+                    //C to F
+                    case 4:
+                        setValueStringRhs(df.format((1.8 * val) + 32), true);
+                        break;
+                    //C to K
+                    case 5:
+                        setValueStringRhs(df.format(val + K), true);
+                }
+                break;
+            // Fahrenheit selected
+            case 4:
+                switch (selectedItemRhs) {
+                    // F to C
+                    case 3:
+                        setValueStringRhs(df.format((val - 32) * 0.5555555556), true);
+                        break;
+                    // F to F
+                    case 4:
+                        setValueStringRhs(valueStringLhs.toString(), true);
+                        break;
+                    // F to K
+                    case 5:
+                        setValueStringRhs(df.format(((val - 32) * 0.5555555556) + K), true);
+                }
+                break;
+            // Kelvin Selected
+            case 5:
+                switch (selectedItemRhs) {
+                    // K to C
+                    case 3:
+                        setValueStringRhs(df.format(val - K), true);
+                        break;
+                    // K to F
+                    case 4:
+                        setValueStringRhs(df.format(((val - K) * 1.8) + 32), true);
+                        break;
+                    // K to K
+                    case 5:
+                        setValueStringRhs(valueStringLhs.toString(), true);
+                }
+        }
+    }
+
+    private void tempConvertRtoL() {
+        DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+        df.setMaximumFractionDigits(340);
+        double val;
+        try {
+            val = Double.parseDouble(valueStringLhs.toString());
+        } catch (NumberFormatException e) {
+            val = 0;
+        }
+        switch (selectedItemRhs) {
+            //Celsius selected
+            case 3:
+                switch (selectedItemLhs) {
+                    // C to C
+                    case 3:
+                        setValueStringLhs(valueStringRhs.toString(), true);
+                        break;
+                    //C to F
+                    case 4:
+                        setValueStringLhs(df.format((1.8 * val) + 32), true);
+                        break;
+                    //C to K
+                    case 5:
+                        setValueStringLhs(df.format(val + K), true);
+                }
+                break;
+            // Fahrenheit selected
+            case 4:
+                switch (selectedItemLhs) {
+                    // F to C
+                    case 3:
+                        setValueStringLhs(df.format((val - 32) * 0.5555555556), true);
+                        break;
+                    // F to F
+                    case 4:
+                        setValueStringLhs(valueStringRhs.toString(), true);
+                        break;
+                    // F to K
+                    case 5:
+                        setValueStringLhs(df.format(((val - 32) * 0.5555555556) + K), true);
+                }
+                break;
+            // Kelvin Selected
+            case 5:
+                switch (selectedItemLhs) {
+                    // K to C
+                    case 3:
+                        setValueStringLhs(df.format(val - K), true);
+                        break;
+                    // K to F
+                    case 4:
+                        setValueStringLhs(df.format(((val - K) * 1.8) + 32), true);
+                        break;
+                    // K to K
+                    case 5:
+                        setValueStringLhs(valueStringRhs.toString(), true);
+                }
+        }
+    }
+
     private void convertLToR() {
-        double val = Double.parseDouble(valueStringLhs.toString());
+        if (selectedUnitIndex == 3) {
+            tempConvertLtoR();
+            return;
+        }
+        double val;
+        try {
+            val = Double.parseDouble(valueStringLhs.toString());
+        } catch (NumberFormatException e) {
+            val = 0;
+        }
         val *= Double
                 .parseDouble(
                         Objects
@@ -397,7 +566,16 @@ public class Data extends BaseObservable {
     }
 
     private void convertRToL() {
-        double val = Double.parseDouble(valueStringRhs.toString());
+        if (selectedUnitIndex == 3) {
+            tempConvertRtoL();
+            return;
+        }
+        double val;
+        try {
+            val = Double.parseDouble(valueStringLhs.toString());
+        } catch (NumberFormatException e) {
+            val = 0;
+        }
         val *= Double.parseDouble(Objects.requireNonNull(unitRange.get(selectedUnitIndex)).get(selectedItemRhs)[2].toString());
         //Divide val with the change rate of convertedVal
         double convertedVal = Double.parseDouble(Objects.requireNonNull(unitRange.get(selectedUnitIndex)).get(selectedItemLhs)[2].toString());
