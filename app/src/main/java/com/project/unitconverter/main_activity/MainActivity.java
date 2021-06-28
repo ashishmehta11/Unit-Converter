@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         // Setting test class instance as the variable to be used by ActivityMainBinding
         binding.setData(viewModel.getData());
-        CardView cv = new CardView(this);
 
     }
 }

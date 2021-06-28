@@ -66,28 +66,28 @@ public class Converter extends Fragment {
         binding.recyclerLeft.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
             int fv = layoutManagerL.findFirstCompletelyVisibleItemPosition();
             int lv = layoutManagerL.findLastCompletelyVisibleItemPosition();
-            if (lv - fv == 4) {
-                Log.d("Unit Converter", "onScrollChange which to pick left :" + (fv + 2));
-                viewModel.getData().setSelectedItemLhs(fv + 3);
-            }
-//            if (lv - fv ==2) {
-//                Log.d("Unit Converter", "onScrollChange which to pick left :" + (fv + 1));
-//                viewModel.getData().setSelectedItemLhs(fv+2);
+//            if (lv - fv == 4) {
+//                Log.d("Unit Converter", "onScrollChange which to pick left :" + (fv + 2));
+//                viewModel.getData().setSelectedItemLhs(fv + 3);
 //            }
+            if (lv - fv ==2) {
+                Log.d("Unit Converter", "onScrollChange which to pick left :" + (fv + 1));
+                viewModel.getData().setSelectedItemLhs(fv+2);
+            }
 
         });
         binding.recyclerRight.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
             int fv = layoutManagerR.findFirstCompletelyVisibleItemPosition();
             int lv = layoutManagerR.findLastCompletelyVisibleItemPosition();
             Log.d("Unit Converter", "onScrollChange right fv:" + fv + " lv=" + lv);
-            if (lv - fv == 4) {
-                Log.d("Unit Converter", "onScrollChange which to pick right :" + (fv + 2));
-                viewModel.getData().setSelectedItemRhs(fv + 3);
-            }
-//            if (lv - fv ==2) {
-//                Log.d("Unit Converter", "onScrollChange which to pick right :" + (fv + 1));
-//                viewModel.getData().setSelectedItemRhs(fv+2);
+//            if (lv - fv == 4) {
+//                Log.d("Unit Converter", "onScrollChange which to pick right :" + (fv + 2));
+//                viewModel.getData().setSelectedItemRhs(fv + 3);
 //            }
+            if (lv - fv ==2) {
+                Log.d("Unit Converter", "onScrollChange which to pick right :" + (fv + 1));
+                viewModel.getData().setSelectedItemRhs(fv+2);
+            }
         });
 
         viewModel.getUnitFamilyChangedNotifier().observe(getViewLifecycleOwner(), integer -> notifyChange());
@@ -158,9 +158,9 @@ public class Converter extends Fragment {
     private void notifyChange() {
         binding.recyclerLeft.setAdapter(leftAdapter);
         binding.recyclerRight.setAdapter(rightAdapter);
-        viewModel.getData().setSelectedItemRhs(3);
-        viewModel.getData().setSelectedItemLhs(3);
-//        viewModel.getData().setSelectedItemRhs(2);
-//        viewModel.getData().setSelectedItemLhs(2);
+//        viewModel.getData().setSelectedItemRhs(3);
+//        viewModel.getData().setSelectedItemLhs(3);
+        viewModel.getData().setSelectedItemRhs(2);
+        viewModel.getData().setSelectedItemLhs(2);
     }
 }

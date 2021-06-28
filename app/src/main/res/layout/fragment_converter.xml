@@ -11,10 +11,10 @@
             type="com.project.unitconverter.data.Data" />
     </data>
 
-    <!--android:layout_height="197dp"-->
+    <!--android:layout_height="329dp"-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="329dp">
+        android:layout_height="198dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView7"

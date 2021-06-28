@@ -36,8 +36,8 @@ public class Data extends BaseObservable {
     private final double K = 273.15;
 
     public Data() {
-        selectedItemRhs = selectedItemLhs = 3;
-//        selectedItemRhs=selectedItemLhs=2;
+        //selectedItemRhs = selectedItemLhs = 3;
+        selectedItemRhs=selectedItemLhs=2;
 
         setSelectedNameRhs(Objects.requireNonNull(MainActivityViewModel.unitRange.get(selectedUnitIndex)).get(selectedItemRhs)[0].toString());
         setSelectedNameLhs(Objects.requireNonNull(MainActivityViewModel.unitRange.get(selectedUnitIndex)).get(selectedItemLhs)[0].toString());
@@ -357,50 +357,50 @@ public class Data extends BaseObservable {
         }
         switch (selectedItemLhs) {
             //Celsius selected
-            case 3:
+            case 2:
                 switch (selectedItemRhs) {
                     // C to C
-                    case 3:
+                    case 2:
                         setValueStringRhs(valueStringLhs.toString(), true);
                         break;
                     //C to F
-                    case 4:
+                    case 3:
                         setValueStringRhs(df.format((1.8 * val) + 32), true);
                         break;
                     //C to K
-                    case 5:
+                    case 4:
                         setValueStringRhs(df.format(val + K), true);
                 }
                 break;
             // Fahrenheit selected
-            case 4:
+            case 3:
                 switch (selectedItemRhs) {
                     // F to C
-                    case 3:
+                    case 2:
                         setValueStringRhs(df.format((val - 32) * 0.5555555556), true);
                         break;
                     // F to F
-                    case 4:
+                    case 3:
                         setValueStringRhs(valueStringLhs.toString(), true);
                         break;
                     // F to K
-                    case 5:
+                    case 4:
                         setValueStringRhs(df.format(((val - 32) * 0.5555555556) + K), true);
                 }
                 break;
             // Kelvin Selected
-            case 5:
+            case 4:
                 switch (selectedItemRhs) {
                     // K to C
-                    case 3:
+                    case 2:
                         setValueStringRhs(df.format(val - K), true);
                         break;
                     // K to F
-                    case 4:
+                    case 3:
                         setValueStringRhs(df.format(((val - K) * 1.8) + 32), true);
                         break;
                     // K to K
-                    case 5:
+                    case 4:
                         setValueStringRhs(valueStringLhs.toString(), true);
                 }
         }
@@ -417,50 +417,50 @@ public class Data extends BaseObservable {
         }
         switch (selectedItemRhs) {
             //Celsius selected
-            case 3:
+            case 2:
                 switch (selectedItemLhs) {
                     // C to C
-                    case 3:
+                    case 2:
                         setValueStringLhs(valueStringRhs.toString(), true);
                         break;
                     //C to F
-                    case 4:
+                    case 3:
                         setValueStringLhs(df.format((1.8 * val) + 32), true);
                         break;
                     //C to K
-                    case 5:
+                    case 4:
                         setValueStringLhs(df.format(val + K), true);
                 }
                 break;
             // Fahrenheit selected
-            case 4:
+            case 3:
                 switch (selectedItemLhs) {
                     // F to C
-                    case 3:
+                    case 2:
                         setValueStringLhs(df.format((val - 32) * 0.5555555556), true);
                         break;
                     // F to F
-                    case 4:
+                    case 3:
                         setValueStringLhs(valueStringRhs.toString(), true);
                         break;
                     // F to K
-                    case 5:
+                    case 4:
                         setValueStringLhs(df.format(((val - 32) * 0.5555555556) + K), true);
                 }
                 break;
             // Kelvin Selected
-            case 5:
+            case 4:
                 switch (selectedItemLhs) {
                     // K to C
-                    case 3:
+                    case 2:
                         setValueStringLhs(df.format(val - K), true);
                         break;
                     // K to F
-                    case 4:
+                    case 3:
                         setValueStringLhs(df.format(((val - K) * 1.8) + 32), true);
                         break;
                     // K to K
-                    case 5:
+                    case 4:
                         setValueStringLhs(valueStringRhs.toString(), true);
                 }
         }
@@ -490,10 +490,6 @@ public class Data extends BaseObservable {
         DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
         df.setMaximumFractionDigits(340);
         setValueStringRhs(df.format(convertedVal), true);
-//        if(this.valueStringLhs.length()>1&&this.valueStringLhs.toString().contains("-")&&Double.parseDouble(this.valueStringLhs.toString())==0) {
-//            this.valueStringLhs.deleteCharAt(0);
-//            notifyPropertyChanged(BR.valueStringLhs);
-//        }
     }
 
     private void convertRToL() {

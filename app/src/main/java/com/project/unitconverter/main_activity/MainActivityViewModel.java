@@ -57,7 +57,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                                 , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_time_pink, application.getTheme()))
                         });
                         add(new Object[]{});
-                        add(new Object[]{});
                         add(new Object[]{"Nanoseconds", "ns", 1000000000});
                         add(new Object[]{"Microseconds", "us", 1000000});
                         add(new Object[]{"Milliseconds", "ms", 1000});
@@ -68,7 +67,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                         add(new Object[]{"Week", "week", (3600 * 24 * 7)});
                         add(new Object[]{"Month", "m", (3600 * 24 * 30)});
                         add(new Object[]{"Year", "y", (3600 * 24 * 30 * 12)});
-                        add(new Object[]{});
                         add(new Object[]{});
                     }
                 });
@@ -81,7 +79,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                                 , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_pendrive_pink, application.getTheme()))
                         });
                         add(new Object[]{});
-                        add(new Object[]{});
                         add(new Object[]{"Bit", "b", 1});
                         add(new Object[]{"Nibble", "nb", 4});
                         add(new Object[]{"Byte", "by", 8});
@@ -90,7 +87,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                         add(new Object[]{"Gigabytes", "gb", Math.pow(1024, 3) * 8});
                         add(new Object[]{"Terabytes", "tb", Math.pow(1024, 4) * 8});
                         add(new Object[]{"Petabytes", "pb", Math.pow(1024, 5) * 8});
-                        add(new Object[]{});
                         add(new Object[]{});
                     }
                 });
@@ -103,7 +99,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                                 , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_area_pink, application.getTheme()))
                         });
                         add(new Object[]{});
-                        add(new Object[]{});
                         add(new Object[]{"Square centimeter", "cm\u00B2", 1});
                         add(new Object[]{"Square feet", "ft\u00B2", 929.03});
                         add(new Object[]{"Square inches", "in\u00B2", 6.4516});
@@ -114,7 +109,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                         add(new Object[]{"Square Kilometre", "km\u00B2", 10000000000.0});
                         add(new Object[]{"Square Mile", "mi\u00B2", 25900000000.0});
                         add(new Object[]{"Square yard", "yd\u00B2", 8361.27});
-                        add(new Object[]{});
                         add(new Object[]{});
                     }
                 });
@@ -127,11 +121,9 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                                 , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_thermometer_pink, application.getTheme()))
                         });
                         add(new Object[]{});
-                        add(new Object[]{});
                         add(new Object[]{"Celsius", "\u00B0C", 1});
                         add(new Object[]{"Fahrenheit", "\u00B0F", -17.2222222222});
                         add(new Object[]{"Kelvin", "K", -272.15});
-                        add(new Object[]{});
                         add(new Object[]{});
                     }
                 });
@@ -144,7 +136,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                                 , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_length_pink, application.getTheme()))
                         });
                         add(new Object[]{});
-                        add(new Object[]{});
                         add(new Object[]{"Millimetres", "mm", 1});
                         add(new Object[]{"Centimetres", "cm", 10});
                         add(new Object[]{"Metres", "m", 1000});
@@ -155,7 +146,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                         add(new Object[]{"Miles", "mi", 1609344});
                         add(new Object[]{"Nautical miles", "NM", 1852000});
                         add(new Object[]{"Mils", "mil", 0.0254});
-                        add(new Object[]{});
                         add(new Object[]{});
                     }
                 });
@@ -168,7 +158,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                                 , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_volume_pink, application.getTheme()))
                         });
                         add(new Object[]{});
-                        add(new Object[]{});
                         add(new Object[]{"Uk gallons", "gal", 4546.09});
                         add(new Object[]{"US gallon", "gal", 3785.411784});
                         add(new Object[]{"Litres", "l", 1000});
@@ -177,7 +166,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                         add(new Object[]{"Cubic metres", "m\u00B3", 1000000});
                         add(new Object[]{"Cubic inches", "in\u00B3", 16.387064});
                         add(new Object[]{"Cubic feet", "ft\u00B3", 28316.846592});
-                        add(new Object[]{});
                         add(new Object[]{});
                     }
                 });
@@ -190,7 +178,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                                 , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_weight_pink, application.getTheme()))
                         });
                         add(new Object[]{});
-                        add(new Object[]{});
                         add(new Object[]{"Gram", "g", 1});
                         add(new Object[]{"Tons", "t", 1000000});
                         add(new Object[]{"UK tons", "t", 1016046.9088});
@@ -201,7 +188,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                         add(new Object[]{"Stones", "st", 6350.29});
                         add(new Object[]{"Pounds", "lb", 453.59237});
                         add(new Object[]{"Ounces", "oz", 28.349523125});
-                        add(new Object[]{});
                         add(new Object[]{});
                     }
                 });
@@ -214,7 +200,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                                 , Objects.requireNonNull(ResourcesCompat.getDrawable(application.getResources(), R.drawable.ic_speed_pink, application.getTheme()))
                         });
                         add(new Object[]{});
-                        add(new Object[]{});
                         add(new Object[]{"Metres per second", "m/s", 1});
                         add(new Object[]{"Metres per hour", "m/h", 0.0002777778});
                         add(new Object[]{"Kilometres per second", "km/s", 1000});
@@ -226,7 +211,6 @@ public class MainActivityViewModel extends AndroidViewModel implements IMainActi
                         add(new Object[]{"Miles per second", "mi/s", 1609.344});
                         add(new Object[]{"Miles per hour", "mi/h", 0.44704});
                         add(new Object[]{"Knots", "kn", 0.5144444444});
-                        add(new Object[]{});
                         add(new Object[]{});
                     }
                 });
